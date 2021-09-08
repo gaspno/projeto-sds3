@@ -3,7 +3,6 @@ package com.devsuperior.dsvendas.dto;
 import java.io.Serializable;
 
 import com.devsuperior.dsvendas.entities.Seller;
-
 public class SellerDto implements Serializable{
 	
 	/**
@@ -13,6 +12,8 @@ public class SellerDto implements Serializable{
 	private Long Id;
 	private String name;
 	
+	
+
 	public SellerDto()
 	{
 		

@@ -1,42 +1,46 @@
-package com.devsuperior.dsvendas.entities;
+package com.devsuperior.dsvendas.dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import com.devsuperior.dsvendas.entities.Sale;
+import com.devsuperior.dsvendas.entities.Seller;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "tb_sales")
-public class Sale {
+public class SaleDto implements Serializable{
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private int visited;
 	private int deals;
 	private double amount;
 	private LocalDate date;
-	@ManyToOne
-	@JoinColumn(name = "seller_id")
-	private Seller seller;
+	private SellerDto seller;
 	
-	public Sale() {
+	public SaleDto() {
 		
 	}
 
-	public Sale(Long id, int visited, int deals, double amount, LocalDate date, Seller seller) {
+	public SaleDto(Sale entity) {
+		super();
+		this.id = entity.getId();
+		this.visited = entity.getVisited();
+		this.deals = entity.getDeals();
+		this.amount =entity.getAmount();
+		date = entity.getDate();
+		this.seller=new SellerDto(entity.getSeller());
+	}
+
+	public SaleDto(Long id, int visited, int deals, double amount, LocalDate date,Seller seller) {
 		super();
 		this.id = id;
 		this.visited = visited;
 		this.deals = deals;
 		this.amount = amount;
 		this.date = date;
-		this.seller = seller;
+		this.seller=new SellerDto(seller);
 	}
 
 	public Long getId() {
@@ -72,17 +76,20 @@ public class Sale {
 	}
 
 	public LocalDate getDate() {
-		return this.date;
+		return date;
 	}
 
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
-	public Seller getSeller() {
+	public SellerDto getSeller() {
 		return seller;
 	}
 
+	
+	
+	
 	
 
 }
