@@ -22,7 +22,7 @@ function  DonutChart() {
             const myLabels=data.map(x=>x.sellerName)
             const mySeries=data.map(x=>x.sum)
             setCData({labels:myLabels,series:mySeries})
-            console.log(response.data)
+       
         })
     },[])   
 
